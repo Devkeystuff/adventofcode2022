@@ -1,11 +1,8 @@
-use std::fs;
+use crate::day::Day;
 
 struct Day01 {}
 
 impl Day01 {
-    fn get_input() -> String {
-        fs::read_to_string("src/day_01/input.txt").expect("Failed to read file")
-    }
     fn get_total_carriage_per_elf(input: String) -> Vec<i32> {
         input
             // Split by empty lines
@@ -24,29 +21,31 @@ impl Day01 {
     }
 }
 
-pub fn part_one() -> i32 {
-    let contents = Day01::get_input();
+impl Day for Day01 {
+    fn part_one() -> String {
+        let contents = Day01::get_input(1);
 
-    let elves_total_carriage = Day01::get_total_carriage_per_elf(contents);
+        let elves_total_carriage = Day01::get_total_carriage_per_elf(contents);
 
-    // Find the max value
-    let max_calories = elves_total_carriage
-        .iter()
-        .max()
-        .expect("Couldn't find the max value");
+        // Find the max value
+        let max_calories = elves_total_carriage
+            .iter()
+            .max()
+            .expect("Couldn't find the max value");
 
-    *max_calories
-}
+        max_calories.to_string()
+    }
 
-pub fn part_two() -> i32 {
-    let contents = Day01::get_input();
+    fn part_two() -> String {
+        let contents = Day01::get_input(1);
 
-    let mut elves_total_carriage = Day01::get_total_carriage_per_elf(contents);
+        let mut elves_total_carriage = Day01::get_total_carriage_per_elf(contents);
 
-    elves_total_carriage.sort();
-    elves_total_carriage.reverse();
+        elves_total_carriage.sort();
+        elves_total_carriage.reverse();
 
-    let top_three = elves_total_carriage[0..3].into_iter().sum::<i32>();
+        let top_three = elves_total_carriage[0..3].into_iter().sum::<i32>();
 
-    top_three
+        top_three.to_string()
+    }
 }

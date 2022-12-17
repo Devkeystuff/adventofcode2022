@@ -4,7 +4,7 @@ use crate::day::Day;
 
 pub struct Day02 {}
 
-#[derive(EnumString, PartialEq)]
+#[derive(EnumString, PartialEq, Clone, Copy)]
 enum Move {
     #[strum(serialize = "A", serialize = "X")]
     Rock = 1,
